@@ -58,5 +58,8 @@ function addFilteredProductsToDom(filteredProducts){
     let productStr = `<article class="product-container"><img src=${product.img} alt=""><div class="product-info"><div class="product-name">${product.name}</div><div class="product-price">${product.price}</div></div></article>`;
     filteredProductsStr += productStr;
   });
-  productsList.innerHTML = filteredProductsStr;
+  if(productsList != null){
+    productsList.innerHTML = filteredProductsStr;
+  }
+  
 }
