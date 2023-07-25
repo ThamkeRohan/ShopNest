@@ -28,7 +28,7 @@
             </ul>
         </nav>
         
-        <span class="shopping-cart-container" data-cart-count="0">
+        <span class="shopping-cart-container" data-cart-count="">
             <span class="material-symbols-outlined shopping-cart-logo">
                 shopping_cart
             </span>
@@ -40,20 +40,7 @@
     <div>
         <h2 class="sub-heading">Featured</h2>
         <section class="home-products-list">
-        <article class="product-container">
-            <img src="imgs/High-Back-Bench.jpeg" alt="">
-            <div class="product-info">
-                <div class="product-name">High-Back Bench</div>
-                <div class="product-price">9.9</div>
-            </div>
-        </article>
-        <article class="product-container">
-            <img src="imgs/Utopia-Sofa.jpeg" alt="">
-            <div class="product-info">
-                <div class="product-name">Utopia Sofa</div>
-                <div class="product-price">39.5</div>
-            </div>
-        </article>
+        
         <article class="product-container">
             <img src="imgs/Entertainment-Center.jpeg" alt="">
             <div class="product-info">
@@ -65,7 +52,26 @@
         <div class="all-products-btn-container">
             <button type="button" class="all-products-btn"><a href="products.html">All Products</a></button>
         </div>
-        
+    </div>
+    <div class="cart-slider">
+        <div class="cart-slider-header">
+            <span class="material-symbols-outlined close-cart-btn">
+                close
+            </span>
+            <h2 class="cart-title">Your Bag</h2>
+        </div>
+        <ul class="added-items-list">
+           
+        </ul>
+        <div class="cart-slider-footer">
+            <div class="total">
+                <strong>
+                <span>Total : </span>
+                <span class="total-value" data-total="0"></span>
+                </strong>
+            </div>
+            <button type="button" class="checkout-btn">CHECKOUT</button>
+        </div>
     </div>
 </body>
 </html>

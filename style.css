@@ -14,8 +14,9 @@
     --light-blue:rgb(239, 246, 252);
     --light-gray:rgb(241, 239, 239);
     --gray:rgb(199, 198, 198);
+    --transparent-black:rgba(46, 45, 45, 0.849);
+    --dark-gray:gray;
 }
-
 .header a{
     color: var(--off-black);
 }
@@ -79,6 +80,7 @@
 }
 .shopping-cart-logo{
     font-size: 2.5rem;
+    cursor: pointer;
 }
 .shop-now-btn{
     position: absolute;
@@ -144,22 +146,23 @@
 }
 .home-products-list{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
     grid-auto-rows: 300px;
-    margin: 5px 50px;
+    margin: 5px 25px;
     grid-gap: 15px;
 }
 .products-list{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
     grid-auto-rows: 300px;
-    margin: 5px 50px;
+    margin: 5px 30px;
     grid-gap: 15px;
 }
 .product-container{
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
 .product-container img{
     width: 100%;
@@ -177,10 +180,46 @@
 }
 .product-info .product-price{
     font-weight: bold;
+    position: relative;
+    left: 0.6rem;
+   
 }
 .product-info .product-price::before{
     content: "$";
+}
+
+.cart-slider .product-info .product-price::before{
+    content: "$";
     margin-right: 5px;
+    position: absolute;
+    left:-0.5rem;
+}
+.product-container .product-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background-color:var(--transparent-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+}
+.product-container .product-cover:hover{
+    opacity: 1;
+}
+.product-cover .add-to-cart-btn{
+    font-size: 2rem;
+    font-weight: bolder;
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--dark-gold);
+    
 }
 .all-products-btn-container{
     display: flex;
@@ -231,7 +270,113 @@
     cursor: pointer;
     display: none;
 }
-
+.cart-slider{
+    z-index: 1;
+    position: fixed;
+    width: 400px;
+    background-color: var(--light-gray);
+    top: 0;
+    right: -400px;
+    height: 100vh;
+    transition: transform 0.5s;
+}
+.cart-slider .added-items-list{
+    height: 400px;
+    overflow-y: auto;
+}
+.show-cart-slider{
+    transform: translateX(-400px);
+}
+.cart-slider .cart-slider-header{
+    text-align: center;
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-slider-header .close-cart-btn{
+    position: absolute;
+    top:5px;
+    left: 5px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.cart-slider .added-item{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.added-item .counter-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.counter-container button{
+    color: var(--dark-gold);
+}
+.added-item .remove-btn{
+    color: var(--dark-gray);
+}
+.added-item .remove-btn, .counter-container button{
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.added-item .img-container{
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+.added-item .img-container img{
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.added-item div:nth-of-type(2){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;   
+}
+.cart-slider-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.cart-slider-footer .total{
+    font-size: 1.5rem;
+    font-family: Lumanosimo;
+}
+.cart-slider-footer .total-value[data-total]::after{
+    content: attr(data-total);
+}
+.cart-slider-footer .checkout-btn{
+    width: 15rem;
+    font-size: 1.1rem;
+    padding: 0.2rem;
+    margin-top: 20px;
+    font-weight: bolder;
+    background-color: var(--dark-gold);
+    border: none;
+    color: var(--white);
+}
+.cart-slider-footer .total-value::before{
+    content: "$";
+}
+  
 
 
 
@@ -265,7 +410,7 @@
     }
     .show-navigation-container{
         display: block;
-        position: absolute;
+        position: fixed;
         top: 20px;
         width: 90vw;
         height: 95vh;
@@ -278,5 +423,8 @@
     }
     .navigation-container .close-navigation-btn{
         display: block;
+    }
+    .header .title{
+        font-size: 1.5rem;
     }
 }
