@@ -8,7 +8,10 @@ const rangeInput = document.querySelector(".filter-container .range-input")
 const rangeValue = document.querySelector(".filter-container .range-value");
 const companies = document.querySelectorAll(".companies-list li")
 
-rangeValue.innerHTML = rangeInput.value;
+if(rangeInput != null){
+  rangeValue.innerHTML = rangeInput.value;
+}
+
 addFilteredProductsToDom(products);
 
 let filteredProducts=[];
