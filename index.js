@@ -15,34 +15,43 @@ if(rangeInput != null){
 addFilteredProductsToDom(products);
 
 let filteredProducts=[];
-searchInput.addEventListener("input",function(){
-  filteredProducts = products.filter((product)=>{
-    return product.name.toLowerCase().includes(searchInput.value.toLowerCase())
-  })
-  addFilteredProductsToDom(filteredProducts)
-})
+if(searchInput != null){
+  searchInput.addEventListener("input", function () {
+    filteredProducts = products.filter((product) => {
+      return product.name
+        .toLowerCase()
+        .includes(searchInput.value.toLowerCase());
+    });
+    addFilteredProductsToDom(filteredProducts);
+  });
+}
 
-companies.forEach((company)=>{
-  company.addEventListener("click",()=>{
-    let companyName = company.innerText;
-    if(companyName === "All"){
-      addFilteredProductsToDom(products);
-      return
-    }
-    filteredProducts = products.filter((product)=>{
-      return product.company.toLowerCase() === companyName.toLowerCase();
-    })
-    addFilteredProductsToDom(filteredProducts)
-  })
-})
+if(companies != null){
+  companies.forEach((company) => {
+    company.addEventListener("click", () => {
+      let companyName = company.innerText;
+      if (companyName === "All") {
+        addFilteredProductsToDom(products);
+        return;
+      }
+      filteredProducts = products.filter((product) => {
+        return product.company.toLowerCase() === companyName.toLowerCase();
+      });
+      addFilteredProductsToDom(filteredProducts);
+    });
+  });
+}
 
-rangeInput.addEventListener("input",()=>{
-  rangeValue.innerHTML = rangeInput.value;
-  filteredProducts = products.filter((product)=>{
-    return product.price <= rangeInput.value;
-  })
-  addFilteredProductsToDom(filteredProducts)
-})
+if(rangeInput != null){
+  rangeInput.addEventListener("input", () => {
+    rangeValue.innerHTML = rangeInput.value;
+    filteredProducts = products.filter((product) => {
+      return product.price <= rangeInput.value;
+    });
+    addFilteredProductsToDom(filteredProducts);
+  });
+}
+
 
 
 toggleBtn.addEventListener("click",()=>{
