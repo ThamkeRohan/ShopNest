@@ -14,7 +14,7 @@ const addedItemsList = document.querySelector(".added-items-list")
 const shoppingCartContainer = document.querySelector(".shopping-cart-container")
 const total = document.querySelector(".cart-slider-footer .total-value")
 const homeProductsList = document.querySelector(".home-products-list")
-console.log(homeProductsList);
+
 
 
 let addedItems = [];
@@ -90,6 +90,23 @@ closeNavigationBtn.addEventListener("click",()=>{
 });
 
 addAddToCartBtnsEvent()
+
+
+function addRemoveFromCartBtnEvent(){
+  const removeBtns = document.querySelectorAll(".remove-btn")
+  removeBtns.forEach((removeBtn)=>{
+    removeBtn.addEventListener("click",()=>{
+      const id = Number(removeBtn.closest(".added-item").dataset.id)
+      addedItems = addedItems.filter((addedItem)=>{
+        return addedItem.id !== id
+      })
+      updateCartCount();
+      updateCartSlider(addedItems);
+      saveToLocalStorage(addedItems);
+
+    })
+  })
+}
 
 function addAddToCartBtnsEvent(){
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
@@ -186,7 +203,6 @@ function addCountBtnsEventListners() {
   
 }
 function addProductsToHome(products){
-  console.log("hello");
   let topFourProducts = []
   for(let i=0; i<4; i++){
     topFourProducts = [...topFourProducts, products[i]]
@@ -247,5 +263,6 @@ function updateCartSlider(addedItems){
   })
   addedItemsList.innerHTML = allItemsStr
   addCountBtnsEventListners()
+  addRemoveFromCartBtnEvent()
   updateTotal();
 }
